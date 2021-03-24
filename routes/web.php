@@ -26,16 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['namespace' => "App\Http\Controllers"], function() {
 
-        Route::get("/dossiers","DossierController@getAll");
-
-        Route::get("/dossiers/{id}/bilan","BilanControllet@getBilan");
-
-        Route::post("/dossiers","DossierController@addDossier");
-
-        Route::put("/dossiers/{id}","DossierController@updateDossier");
-
-        Route::delete("/dossiers/{id}","DossierController@deleteDossier");
-
         Route::get("/dossiers/{id}/factures/","FactureController@getAll");
 
         Route::post("/factures","FactureController@addFacture");
@@ -45,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete("/factures/{id}","FactureController@deleteFacture");
 
     });
+
+    Route::view('dashboard/dossiers', 'dossiers');
 
 
 });

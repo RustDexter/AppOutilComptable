@@ -24,6 +24,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-dark.css') }}" id="darkTheme" disabled>
+    @livewireStyles
 </head>
 <body class="vertical  light  ">
 <div class="wrapper">
@@ -221,6 +222,8 @@
 </div>
 </main> <!-- main -->
 </div> <!-- .wrapper -->
+@livewireScripts
+</body>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/moment.min.js') }}"></script>
