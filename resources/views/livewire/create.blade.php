@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Capitale:</label>
-                        <input type="number" wire:model="capitale" class="form-control"  placeholder="nbrEmployes">
+                        <input type="number" wire:model="capitale" class="form-control"  placeholder="Capitale">
                     </div>
                 </form>
             </div>
