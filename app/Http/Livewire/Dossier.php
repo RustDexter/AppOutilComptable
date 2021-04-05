@@ -8,6 +8,8 @@ class Dossier extends Component
 {
     public $data, $nom, $nbrEmployes,$capitale, $selected_id;
     public $updateMode = false;
+    public $deleteId = '';
+
 
     public function render()
     {
@@ -17,27 +19,30 @@ class Dossier extends Component
 
     private function resetInput()
     {
-        $this->nom = null;
-        $this->nbrEmployes = null;
-        $this->capitale = null;
+        $this->nom = "";
+        $this->nbrEmployes = "";
+        $this->capitale = "";
     }
     public function store()
     {
-        $this->validate([
+        $data=$this->validate([
             'nom'=>"required",
             'nbrEmployes'=>"required",
             'capitale'=>"required"
         ]);
-        $data=([
+        /*$data=([
             'nom'=>$this->nom,
             'nbrEmployes'=>$this->nbrEmployes,
             'capitale'=>$this->capitale
-        ]);
+        ]);*/
         auth()->user()->dossiers()->create($data);
         $this->resetInput();
+        session()->flash('message', 'Dossier Created Successfully.');
+        $this->emit('dossierStore');
     }
     public function edit($id)
     {
+        $this->updateMode=true;
         $record = \App\Models\Dossier::findOrFail($id);
         $this->selected_id = $id;
         $this->nom = $record->nom;
@@ -45,6 +50,13 @@ class Dossier extends Component
         $this->capitale = $record->capitale;
         $this->updateMode = true;
     }
+
+    public function cancel()
+    {
+        $this->updateMode = false;
+        $this->resetInput();
+    }
+
     public function update()
     {
         $this->validate([
@@ -60,15 +72,23 @@ class Dossier extends Component
                 'nbrEmployes'=>$this->nbrEmployes,
                 'capitale'=>$this->capitale
             ]);
-            $this->resetInput();
             $this->updateMode = false;
+            $this->resetInput();
         }
+        session()->flash('message', 'Dossier Updated Successfully.');
     }
-    public function destroy($id)
+
+    public function deleteId($id)
     {
-        if ($id) {
-            $record = \App\Models\Dossier::where('id', $id);
+        $this->deleteId = $id;
+    }
+
+    public function delete()
+    {
+        if ($this->deleteId) {
+            $record = \App\Models\Dossier::where('id', $this->deleteId);
             $record->delete();
+            session()->flash('message', 'Dossier Deleted Successfully.');
         }
     }
 }
