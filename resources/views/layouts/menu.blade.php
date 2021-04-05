@@ -1,4 +1,10 @@
 <li class="nav-item w-100">
+    <a class="nav-link" href="/dashboard/">
+        <i class="fe fe-home fe-16"></i>
+        <span class="ml-3 item-text">Home</span>
+    </a>
+</li>
+<li class="nav-item w-100">
     <a class="nav-link" href="/dashboard/dossiers">
         <i class="fe fe-layers fe-16"></i>
         <span class="ml-3 item-text">Dossiers</span>

@@ -38,7 +38,7 @@
                             <tbody>
                             @foreach($data as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
+                                    <td>#{{ $value->id }}</td>
                                     <td>{{ $value->nom }}</td>
                                     <td><span class="badge badge-warning">{{$value->nbrEmployes}}</span></td>
                                     <td><span class="badge badge-success">{{$value->capitale}}</span></td>
