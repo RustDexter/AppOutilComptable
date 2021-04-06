@@ -92,13 +92,58 @@
             </div>
         </div>
         <div class="col-md-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <strong class="card-title">Last logged in compatble</strong>
+                    <a class="float-right small text-muted" href="#!"></a>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush my-n3">
+                        @foreach($users as $user)
+                        <div class="list-group-item">
+                            <div class="row align-items-center">
+                                <div class="col-3 col-md-2">
+                                    <img src="/css/dashboard/assets/avatars/face-{{$user->id+1}}.jpg" alt="..." class="thumbnail-sm">
+                                </div>
+                                <div class="col">
+                                    <strong>{{$user->name}}</strong>
+                                    <div class="my-0 text-muted small">{{$user->role->nom}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <strong class="badge badge-pill badge-success">{{$user->last_login}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div> <!-- / .list-group -->
+                </div> <!-- / .card-body -->
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 mb-4">
             <div class="card shadow">
                 <div class="card-header">
                     <strong class="card-title mb-0">Dossier par mois</strong>
                 </div>
-                <div class="card-body"><div class="chartjs-size-monitor">
-                <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                <div class="card-body">
+                    <div class="chartjs-size-monitor">
+                        <div id="chart_div" style="width: 100%; height: 500px;"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <strong class="card-title mb-0">Facture par mois</strong>
+                </div>
+                <div class="card-body">
+                    <div class="chartjs-size-monitor">
+                        <div id="chart_facture" style="width: 100%; height: 500px;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -108,13 +153,15 @@
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawChartBar);
+        google.charts.setOnLoadCallback(drawChartBarFacture);
+
 
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
                 ['pourcentage des comptable', 'pourcentage'],
-                ['expert',     7],
-                ['normal',      2]
+                @php echo"['expert'," .$Allexpert."],"@endphp
+                @php echo"['normal'," .$Allnormal."]"@endphp
             ]);
 
             var options = {
@@ -130,9 +177,11 @@
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
                 ['mois', 'Dossiers', { role: 'style' }],
-                ['février',  2, '#1b68ff'],
-                ['mars',  3, '#1b68ff'],
-                ['avril',  1, '#1b68ff']
+                @php
+                    foreach ($monthlyDossier as $val){
+                        echo"['".$val->month."'," .$val->data.", '#1b68ff'],";
+                    }
+                @endphp
             ]);
 
             var options = {title: 'Dossier par mois'};
@@ -141,7 +190,25 @@
             var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
-        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChartBarFacture() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['mois', 'facture', { role: 'style' }],
+                @php
+                    foreach ($monthlyFacture as $val){
+                        echo"['".$val->month."'," .$val->data.", '#3AD29F'],";
+                    }
+                @endphp
+            ]);
+
+            var options = {title: 'Dossier par mois'};
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_facture'));
+            chart.draw(data, options);
+        }
+
 
     </script>
 @endsection
