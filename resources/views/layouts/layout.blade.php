@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Khallu maroine</title>
+    <title>outilComptable</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/simplebar.css')}}">
     <!-- Fonts CSS -->

@@ -23,20 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 
 
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::group(['namespace' => "App\Http\Controllers"], function() {
-
-        Route::get("/dossiers/{id}/factures/","FactureController@getAll");
-
-        Route::post("/factures","FactureController@addFacture");
-
-        Route::put("/factures/{id}","FactureController@updateFacture");
-
-        Route::delete("/factures/{id}","FactureController@deleteFacture");
-
-    });
-
+    
     Route::view('dashboard/dossiers', 'dossiers');
-
-
+    Route::view('dashboard/factures', 'factures');
 });
