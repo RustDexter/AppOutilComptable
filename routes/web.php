@@ -23,7 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 
 
 Route::group(['middleware' => 'auth'], function () {
-    
     Route::view('dashboard/dossiers', 'dossiers');
     Route::view('dashboard/factures', 'factures');
 });

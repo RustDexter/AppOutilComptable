@@ -84,7 +84,8 @@
                 <div class="card-header">
                     <strong class="card-title mb-0">type des comptables</strong>
                 </div>
-                <div class="card-body"><div class="chartjs-size-monitor">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor">
                         <div style="width:100%; height: 380px;" id="piechart"></div>
 
                     </div> <!-- /.card-body -->
@@ -100,20 +101,21 @@
                 <div class="card-body">
                     <div class="list-group list-group-flush my-n3">
                         @foreach($users as $user)
-                        <div class="list-group-item">
-                            <div class="row align-items-center">
-                                <div class="col-3 col-md-2">
-                                    <img src="/css/dashboard/assets/avatars/face-{{$user->id+1}}.jpg" alt="..." class="thumbnail-sm">
-                                </div>
-                                <div class="col">
-                                    <strong>{{$user->name}}</strong>
-                                    <div class="my-0 text-muted small">{{$user->role->nom}}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <strong class="badge badge-pill badge-success">{{$user->last_login}}</strong>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col-3 col-md-2">
+                                        <img src="{{asset(auth()->user()->profile_photo_url)}}" alt="..."
+                                             class="thumbnail-sm">
+                                    </div>
+                                    <div class="col">
+                                        <strong>{{$user->name}}</strong>
+                                        <div class="my-0 text-muted small">{{$user->role->nom}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <strong class="badge badge-pill badge-success">{{$user->last_login}}</strong>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div> <!-- / .list-group -->
                 </div> <!-- / .card-body -->
@@ -150,7 +152,7 @@
 @endsection
 @section("scriptJs")
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawChartBar);
         google.charts.setOnLoadCallback(drawChartBarFacture);
@@ -176,7 +178,7 @@
         function drawChartBar() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
-                ['mois', 'Dossiers', { role: 'style' }],
+                ['mois', 'Dossiers', {role: 'style'}],
                 @php
                     foreach ($monthlyDossier as $val){
                         echo"['".$val->month."'," .$val->data.", '#1b68ff'],";
@@ -194,7 +196,7 @@
         function drawChartBarFacture() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
-                ['mois', 'facture', { role: 'style' }],
+                ['mois', 'facture', {role: 'style'}],
                 @php
                     foreach ($monthlyFacture as $val){
                         echo"['".$val->month."'," .$val->data.", '#3AD29F'],";
