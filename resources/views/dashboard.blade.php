@@ -202,7 +202,7 @@
                 @endphp
             ]);
 
-            var options = {title: 'Dossier par mois'};
+            var options = {title: 'Facture par mois'};
 
             // Instantiate and draw the chart.
             var chart = new google.visualization.ColumnChart(document.getElementById('chart_facture'));
