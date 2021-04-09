@@ -24,10 +24,48 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-dark.css') }}" id="darkTheme" disabled>
+    <style>
+        .chat {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat li {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #B3A9A9;
+        }
+
+        .chat li .chat-body p {
+            margin: 0;
+            color: #777777;
+        }
+
+        .panel-body {
+            overflow-y: scroll;
+            height: 350px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+    </style>
     @livewireStyles
 </head>
 <body class="vertical  light  ">
-<div class="wrapper">
+<div id="app" class="wrapper">
     <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
             <i class="fe fe-menu navbar-toggler-icon"></i>
@@ -224,6 +262,8 @@
 </div> <!-- .wrapper -->
 @livewireScripts
 </body>
+<script src="{{ mix('js/app.js') }}"></script>
+
 <script src="{{ asset('js/apps.js') }}"></script>
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -465,6 +505,16 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @yield('scriptJs')
+
+@if(auth()->user())
+    <script>
+        window.user=@json(
+    [
+        "user"=>auth()->user(),
+    ]
+    );
+    </script>
+@endif
 
 <script>
     window.dataLayer = window.dataLayer || [];

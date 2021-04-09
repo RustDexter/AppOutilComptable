@@ -23,7 +23,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 
 
 Route::group(['middleware' => 'auth'], function () {
-    
+    Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class,'index']);
+    Route::get('messages', [\App\Http\Controllers\ChatsController::class,'fetchMessages']);
+    Route::post('messages', [\App\Http\Controllers\ChatsController::class,'sendMessage']);
     Route::view('dashboard/dossiers', 'dossiers');
     Route::view('dashboard/factures', 'factures');
 });
