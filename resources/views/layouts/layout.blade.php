@@ -385,7 +385,7 @@ $(document).ready(function () {
                 {
                     calendar.fullCalendar('refetchEvents');
                     
-                    alert("Event Updated Successfully");
+                    alert("Événement mis à jour avec succès");
                 }
             })
         },
@@ -408,14 +408,14 @@ $(document).ready(function () {
                 success:function(response)
                 {
                     calendar.fullCalendar('refetchEvents');
-                    alert("Event Updated Successfully");
+                    alert("Événement mis à jour avec succès");
                 }
             })
         },
 
         eventClick:function(event)
         {
-            if(confirm("Are you sure you want to remove it?"))
+            if(confirm("Voulez-vous vraiment le supprimer?"))
             {
                 var id = event.id;
                 $.ajax({
@@ -428,7 +428,7 @@ $(document).ready(function () {
                     success:function(response)
                     {
                         calendar.fullCalendar('refetchEvents');
-                        alert("Event Deleted Successfully");
+                        alert("Événement supprimé avec succès");
                     }
                 })
             }
