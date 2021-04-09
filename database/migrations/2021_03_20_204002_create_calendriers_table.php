@@ -15,6 +15,10 @@ class CreateCalendriersTable extends Migration
     {
         Schema::create('calendriers', function (Blueprint $table) {
             $table->id();
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }

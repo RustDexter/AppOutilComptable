@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CalendrierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard/calendrier', [CalendrierController::class, 'index']);
+    Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action']);
     Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class, 'index']);
     Route::get('messages', [\App\Http\Controllers\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\ChatsController::class, 'sendMessage']);
