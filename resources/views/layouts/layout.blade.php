@@ -10,7 +10,9 @@
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/simplebar.css')}}">
     <!-- Fonts CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- Icons CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/feather.css') }}">
     <link rel="stylesheet" href="{{asset('css/dashboard/css/select2.css') }}">
@@ -48,7 +50,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
             background-color: #F5F5F5;
         }
 
@@ -58,20 +60,22 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
             background-color: #555;
         }
     </style>
     @livewireStyles
 </head>
-<body class="vertical  light  ">
+<body class="vertical  light">
+
 <div id="app" class="wrapper">
     <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
             <i class="fe fe-menu navbar-toggler-icon"></i>
         </button>
         <form class="form-inline mr-auto searchform text-muted">
-            <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search">
+            <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search"
+                   placeholder="Type something..." aria-label="Search">
         </form>
         <ul class="nav">
             <li class="nav-item">
@@ -86,7 +90,8 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="avatar avatar-sm mt-2">
                 <img src="{{asset(auth()->user()->profile_photo_url)}}" alt="..." class="avatar-img rounded-circle">
               </span>
@@ -112,11 +117,13 @@
             <!-- nav bar -->
             <div class="w-100 mb-4 d-flex">
                 <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-                    <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+                    <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
+                         xml:space="preserve">
                 <g>
-                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
+                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	"/>
+                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	"/>
+                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	"/>
                 </g>
               </svg>
                 </a>
@@ -135,7 +142,8 @@
         </div> <!-- .row -->
     </main>
 </div> <!-- .container-fluid -->
-<div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+<div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -202,7 +210,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+<div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -258,15 +267,12 @@
         </div>
     </div>
 </div>
-</main> <!-- main -->
-</div> <!-- .wrapper -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 @livewireScripts
-</body>
 <script src="{{ mix('js/app.js') }}"></script>
 
 <script src="{{ asset('js/apps.js') }}"></script>
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/moment.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -324,8 +330,7 @@
             'zindex': '9999' /* fix modal open */
         });
     /** date range picker */
-    if ($('.datetimes').length)
-    {
+    if ($('.datetimes').length) {
         $('.datetimes').daterangepicker(
             {
                 timePicker: true,
@@ -340,10 +345,10 @@
     var start = moment().subtract(29, 'days');
     var end = moment();
 
-    function cb(start, end)
-    {
+    function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     }
+
     $('#reportrange').daterangepicker(
         {
             startDate: start,
@@ -387,8 +392,7 @@
         });
     // editor
     var editor = document.getElementById('editor');
-    if (editor)
-    {
+    if (editor) {
         var toolbarOptions = [
             [
                 {
@@ -455,20 +459,15 @@
             });
     }
     // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function()
-    {
+    (function () {
         'use strict';
-        window.addEventListener('load', function()
-        {
+        window.addEventListener('load', function () {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.getElementsByClassName('needs-validation');
             // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form)
-            {
-                form.addEventListener('submit', function(event)
-                {
-                    if (form.checkValidity() === false)
-                    {
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
@@ -480,8 +479,7 @@
 </script>
 <script>
     var uptarg = document.getElementById('drag-drop-area');
-    if (uptarg)
-    {
+    if (uptarg) {
         var uppy = Uppy.Core().use(Uppy.Dashboard,
             {
                 inline: true,
@@ -495,8 +493,7 @@
             {
                 endpoint: 'https://master.tus.io/files/'
             });
-        uppy.on('complete', (result) =>
-        {
+        uppy.on('complete', (result) => {
             console.log('Upload complete! We’ve uploaded these files:', result.successful)
         });
     }
@@ -508,7 +505,7 @@
 
 @if(auth()->user())
     <script>
-        window.user=@json(
+        window.user =@json(
     [
         "user"=>auth()->user(),
     ]
@@ -519,10 +516,10 @@
 <script>
     window.dataLayer = window.dataLayer || [];
 
-    function gtag()
-    {
+    function gtag() {
         dataLayer.push(arguments);
     }
+
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
 </script>
