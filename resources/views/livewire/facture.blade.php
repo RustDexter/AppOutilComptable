@@ -26,14 +26,20 @@
 
 
 
-        <div>
+        <div wire:key="Vente">
             @include('livewire.updateVente')
+            @include('livewire.addVente')
             <div class="row">
                 <div class="col-md-12 my-4">
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">les factures des ventes</h2>
-                            @include('livewire.addVente')
+                            <button  style="    position: absolute;
+                                right: 28px;
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vente">
+                                Ajouter
+                            </button>
+
                         </div>
                         <div class="card-body">
                             @if (count($errors) > 0 && 0 == $error_index)
@@ -124,14 +130,19 @@
             </div>
         </div>
 
-        <div>
+        <div wire:key="Charge">
             @include('livewire.updateCharge')
+            @include('livewire.addCharge')
             <div class="row">
                 <div class="col-md-12 my-4">
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">les factures des charges</h2>
-                            @include('livewire.addCharge')
+                            <button  style="    position: absolute;
+                                right: 28px;
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge">
+                                Ajouter
+                            </button>
                         </div>
                         <div class="card-body">
                             @if (count($errors) > 0 && 1 == $error_index)
@@ -224,14 +235,19 @@
             </div>
         </div>
 
-        <div>
+        <div wire:key="Achat">
             @include('livewire.updateAchat')
+            @include('livewire.addAchat')
             <div class="row">
                 <div class="col-md-12 my-4">
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">Les factures des achats</h2>
-                            @include('livewire.addAchat')
+                            <button  style="    position: absolute;
+                                right: 28px;
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#achat">
+                                Ajouter
+                            </button>
                         </div>
                         <div class="card-body">
                             @if (count($errors) > 0 && 2 == $error_index)

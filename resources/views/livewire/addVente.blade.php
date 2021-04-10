@@ -1,8 +1,3 @@
-<button  style="    position: absolute;
-    right: 28px;
-    top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vente">
-    Ajouter
-</button>
 
 
 <!-- Modal -->
