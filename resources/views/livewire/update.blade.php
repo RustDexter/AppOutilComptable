@@ -14,7 +14,7 @@
                         <input type="text" wire:model="nom" class="form-control"  placeholder="nom">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">NbrEmployes:</label>
+                        <label for="recipient-name" class="col-form-label">Nombre d'employés:</label>
                         <input type="number" wire:model="nbrEmployes" class="form-control"  placeholder="nbrEmployes">
                     </div>
                     <div class="form-group">

@@ -23,11 +23,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard/calendrier', [CalendrierController::class, 'index']);
+    Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class, 'index'])->name("chat");
+    Route::get('/dashboard/calendrier', [CalendrierController::class, 'index'])->name('calendrier');
     Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action']);
-    Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class, 'index']);
     Route::get('messages', [\App\Http\Controllers\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\ChatsController::class, 'sendMessage']);
-    Route::view('dashboard/dossiers', 'dossiers');
-    Route::view('dashboard/factures', 'factures');
+    Route::view('dashboard/dossiers', 'dossiers')->name("dossiers");
+    Route::view('dashboard/factures', 'factures')->name("factures");
+    Route::view('dashboard/utilisateurs', 'utilisateurs')->name("utilisateurs")->middleware('expert.comptable');
 });
+
