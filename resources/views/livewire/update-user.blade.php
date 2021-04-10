@@ -3,19 +3,19 @@
         {{isset($data) ? $data : ''}}
     </p>
     <!-- Modal -->
-    <form wire:submit.prevent="addUser">
+    <form>
         <button style="position: absolute;
     right: 28px;
     top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge">
             Ajouter
         </button>
-        <div wire:ignore.self class="modal fade" id="charge" tabindex="-1" role="dialog"
+        <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un utilisateur</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Modifier un utilisateur</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true close-btn">×</span>
                         </button>
@@ -96,7 +96,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
                                 <label for="photo" class="col-form-label">Image:</label>
@@ -112,8 +111,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">fermer</button>
-                        <button type="submit" wire:click="addUser" data-dismiss="modal"
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Fermer</button>
+                        <button type="button" wire:click.prevent="update()" data-dismiss="modal"
                                 class="btn btn-primary close-modal">Enregistre
                         </button>
                     </div>
