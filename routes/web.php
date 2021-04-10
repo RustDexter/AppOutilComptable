@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class, 'index'])->name("chat");
     Route::get('/dashboard/calendrier', [CalendrierController::class, 'index'])->name('calendrier');
-    Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action']);
+    Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action'])->name('calendrier');
     Route::get('messages', [\App\Http\Controllers\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\ChatsController::class, 'sendMessage']);
     Route::view('dashboard/dossiers', 'dossiers')->name("dossiers");
