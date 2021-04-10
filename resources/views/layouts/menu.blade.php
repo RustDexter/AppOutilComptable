@@ -17,8 +17,15 @@
     </a>
 </li>
 <li class="nav-item w-100">
+    <a class="nav-link" href="/dashboard/calendrier">
+        <i class="fe fe-calendar fe-16"></i>
+        <span class="ml-3 item-text">Calendrier</span>
+    </a>
+</li>
+<li class="nav-item w-100">
     <a class="nav-link" href="/dashboard/chat">
         <i class="fe fe-message-circle fe-16"></i>
         <span class="ml-3 item-text">Système de messagerie</span>
     </a>
 </li>
+
