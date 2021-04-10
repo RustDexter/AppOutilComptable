@@ -1938,6 +1938,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "chat-messages",
   props: ['messages', 'user']
@@ -39912,84 +39914,97 @@ var render = function() {
     _c(
       "main",
       { staticClass: "msger-chat" },
-      _vm._l(_vm.messages, function(message) {
-        return _c("div", [
-          _vm.user.name != message.user.name
-            ? _c("div", { staticClass: "msg left-msg" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "msg-img",
-                    staticStyle: { background: "#009688" }
-                  },
-                  [
-                    _vm._v(
-                      _vm._s(message.user.name.substring(0, 2).toUpperCase())
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "msg-bubble" }, [
-                  _c("div", { staticClass: "msg-info" }, [
-                    _c("div", { staticClass: "msg-info-name" }, [
-                      _vm._v(_vm._s(message.user.name))
+      [
+        _vm._l(_vm.messages, function(message) {
+          return _c("div", [
+            _vm.user.name != message.user.name
+              ? _c("div", { staticClass: "msg left-msg" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "msg-img",
+                      staticStyle: { background: "#009688" }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(message.user.name.substring(0, 2).toUpperCase())
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "msg-bubble" }, [
+                    _c("div", { staticClass: "msg-info" }, [
+                      _c("div", { staticClass: "msg-info-name" }, [
+                        _vm._v(_vm._s(message.user.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "msg-info-time" }, [
+                        _vm._v(_vm._s(message.created_at.substring(0, 10)))
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "msg-info-time" }, [
-                      _vm._v(_vm._s(message.created_at.substring(0, 10)))
+                    _c("div", { staticClass: "msg-text" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(message.message) +
+                          "\n                        "
+                      )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "msg-text" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(message.message) +
-                        "\n                        "
-                    )
                   ])
                 ])
-              ])
-            : _c("div", { staticClass: "msg right-msg" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "msg-img",
-                    staticStyle: { background: "#9c27b0" }
-                  },
-                  [
-                    _vm._v(
-                      _vm._s(message.user.name.substring(0, 2).toUpperCase())
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "msg-bubble" }, [
-                  _c("div", { staticClass: "msg-info" }, [
-                    _c("div", { staticClass: "msg-info-name" }, [
-                      _vm._v(_vm._s(message.user.name))
+              : _c("div", { staticClass: "msg right-msg" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "msg-img",
+                      staticStyle: { background: "#9c27b0" }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(message.user.name.substring(0, 2).toUpperCase())
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "msg-bubble" }, [
+                    _c("div", { staticClass: "msg-info" }, [
+                      _c("div", { staticClass: "msg-info-name" }, [
+                        _vm._v(_vm._s(message.user.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "msg-info-time" }, [
+                        _vm._v(_vm._s(message.created_at.substring(0, 10)))
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "msg-info-time" }, [
-                      _vm._v(_vm._s(message.created_at.substring(0, 10)))
+                    _c("div", { staticClass: "msg-text" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(message.message) +
+                          "\n                        "
+                      )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "msg-text" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(message.message) +
-                        "\n                        "
-                    )
                   ])
                 ])
-              ])
-        ])
-      }),
-      0
+          ])
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ],
+      2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("audio", { attrs: { id: "audiomenu" } }, [
+      _c("source", { attrs: { src: "/css/menu.mp3", type: "audio/mpeg" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -28,4 +28,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('messages', [\App\Http\Controllers\ChatsController::class,'sendMessage']);
     Route::view('dashboard/dossiers', 'dossiers');
     Route::view('dashboard/factures', 'factures');
+    Route::get('dashboard/{id}/bilan', '\App\Http\Controllers\bilanControllet@getAll')->name("bilan");
 });

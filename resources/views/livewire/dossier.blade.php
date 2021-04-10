@@ -25,67 +25,68 @@
                             </ul>
                         </div>
                     @endif
-                        <table class="table table-hover table-borderless border-v">
-                            <thead class="thead-dark">
+                    <table class="table table-hover table-borderless border-v">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>NbrEmployes</th>
+                            <th>Capitale</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($data as $value)
                             <tr>
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>NbrEmployes</th>
-                                <th>Capitale</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($data as $value)
-                                <tr>
-                                    <td>#{{ $value->id }}</td>
-                                    <td>{{ $value->nom }}</td>
-                                    <td><span class="badge badge-warning">{{$value->nbrEmployes}}</span></td>
-                                    <td><span class="badge badge-success">{{$value->capitale}}</span></td>
-                                    <td>
-                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="text-muted sr-only">Action</span>
+                                <td>#{{ $value->id }}</td>
+                                <td>{{ $value->nom }}</td>
+                                <td><span class="badge badge-warning">{{$value->nbrEmployes}}</span></td>
+                                <td><span class="badge badge-success">{{$value->capitale}}</span></td>
+                                <td>
+                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{route('bilan', $value->id)}}">Bilan</a>
+                                        <button data-toggle="modal" data-target="#updateModal"
+                                                wire:click="edit({{ $value->id }})" class="dropdown-item">Edit
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <button data-toggle="modal" data-target="#updateModal"
-                                                    wire:click="edit({{ $value->id }})" class="dropdown-item">Edit
-                                            </button>
-                                            <button type="button" wire:click="deleteId({{ $value->id }})"
-                                                    class="dropdown-item" data-toggle="modal"
-                                                    data-target="#deleteModel">Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <div wire:ignore.self class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true close-btn">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure want to delete?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary close-btn"
-                                                    data-dismiss="modal">Close
-                                            </button>
-                                            <button type="button" wire:click.prevent="delete()"
-                                                    class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete
-                                            </button>
-                                        </div>
+                                        <button type="button" wire:click="deleteId({{ $value->id }})"
+                                                class="dropdown-item" data-toggle="modal"
+                                                data-target="#deleteModel">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <div wire:ignore.self class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true close-btn">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary close-btn"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" wire:click.prevent="delete()"
+                                                class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete
+                                        </button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </table>
+                    </table>
                 </div>
             </div>
         </div>
