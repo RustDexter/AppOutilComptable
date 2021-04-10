@@ -32,7 +32,6 @@ class Facture extends Component
 
     public function render()
     {
-        dd(Auth::user());
         $this->dossiers = \App\Models\Dossier::all();
         return view('livewire.facture');
     }

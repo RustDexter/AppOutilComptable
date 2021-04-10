@@ -33,9 +33,19 @@
 
 @if(auth()->user()->role->nom == 'expert')
     <li class="nav-item w-100">
+        <a class="nav-link" href="{{route('contacts')}}">
+            <i class="fe fe-message-square fe-16"></i>
+            <span class="ml-3 item-text">Messages</span>
+        </a>
+    </li>
+@endif
+
+@if(auth()->user()->role->nom == 'expert')
+    <li class="nav-item w-100">
         <a class="nav-link" href="{{route('utilisateurs')}}">
             <i class="fe fe-users fe-16"></i>
             <span class="ml-3 item-text">Comptables</span>
         </a>
     </li>
 @endif
+
