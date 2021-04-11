@@ -10,7 +10,8 @@
                         <h4 style="padding-top:5px;">Dossier :</h4>
                     </div>
                     <div class="col">
-                        <select class="form-control" wire:model="dossier_id" wire:change="refresh"><!--wire:change="setDossier($event.target.value)"-->
+                        <select class="form-control" wire:model="dossier_id" wire:change="refresh">
+                            <!--wire:change="setDossier($event.target.value)"-->
                             @foreach($dossiers as $value)
                                 <option value="{{$value->id}}">{{$value->nom}}</option>
                             @endforeach
@@ -29,9 +30,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">les factures des ventes</h2>
-                            <button  style="    position: absolute;
+                            <button style="    position: absolute;
                                 right: 28px;
-                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vente">
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#vente">
                                 Ajouter
                             </button>
                         </div>
@@ -57,6 +59,7 @@
                                         <th>Prix TVA</th>
                                         <th>Prix TTC</th>
                                         <th>Taux TVA</th>
+                                        <th>Justification</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -68,20 +71,25 @@
                                             <td>{{$value->prixTva}}</td>
                                             <td>{{$value->prixTtc}}</td>
                                             <td>{{$value->tauxTva}}</td>
+                                            <td><a href="{{asset('storage/' . $value->facture_file_path)}}">Télécharger</a>
+                                            </td>
                                             <td>
                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Uvente"
-                                                            wire:click="editVente({{ $value->id }})" class="dropdown-item">Modifier
+                                                            wire:click="editVente({{ $value->id }})"
+                                                            class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
                                                             data-target="#venteDelete">Supprimer
                                                     </button>
-                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                    <button type="button"
+                                                            wire:click="downloadFacture('{{ $value->facture_file_path }}')"
                                                             class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
@@ -89,13 +97,16 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <div wire:ignore.self class="modal fade" id="venteDelete" tabindex="-1" role="dialog"
+                                    <div wire:ignore.self class="modal fade" id="venteDelete" tabindex="-1"
+                                         role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer
+                                                        Confirm</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
                                                 </div>
@@ -107,7 +118,8 @@
                                                             data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteVente"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui,
+                                                        Supprimer
                                                     </button>
                                                 </div>
                                             </div>
@@ -118,7 +130,6 @@
                             @else
                                 Il n'y a pas de factures
                             @endif
-
 
 
                         </div>
@@ -135,9 +146,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">les factures des charges</h2>
-                            <button  style="    position: absolute;
+                            <button style="    position: absolute;
                                 right: 28px;
-                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge">
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#charge">
                                 Ajouter
                             </button>
                         </div>
@@ -165,6 +177,7 @@
                                         <th>Prix Ttc</th>
                                         <th>Taux Tva</th>
                                         <th>Type</th>
+                                        <th>Justification</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -177,21 +190,24 @@
                                             <td>{{$value->prixTtc}}</td>
                                             <td>{{$value->tauxTva}}</td>
                                             <td>{{$value->type->nom}}</td>
-
+                                            <td><a href="{{asset('storage/' . $value->facture_file_path)}}">Télécharger</a>
                                             <td>
                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Ucharge"
-                                                            wire:click="editCharge({{ $value->id }})" class="dropdown-item">Modifier
+                                                            wire:click="editCharge({{ $value->id }})"
+                                                            class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
                                                             data-target="#deleteCharge">Supprimer
                                                     </button>
-                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                    <button type="button"
+                                                            wire:click="downloadFacture('{{ $value->facture_file_path }}')"
                                                             class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
@@ -199,13 +215,16 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <div wire:ignore.self class="modal fade" id="deleteCharge" tabindex="-1" role="dialog"
+                                    <div wire:ignore.self class="modal fade" id="deleteCharge" tabindex="-1"
+                                         role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer
+                                                        Confirm</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
                                                 </div>
@@ -217,7 +236,8 @@
                                                             data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteCharge"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui,
+                                                        Supprimer
                                                     </button>
                                                 </div>
                                             </div>
@@ -235,7 +255,7 @@
             </div>
         </div>
 
-        <div  wire:key="Achat">
+        <div wire:key="Achat">
             @include('livewire.updateAchat')
             @include('livewire.addAchat')
             <div class="row">
@@ -243,9 +263,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">Les factures des achats</h2>
-                            <button  style="    position: absolute;
+                            <button style="    position: absolute;
                                 right: 28px;
-                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#achat">
+                                top: 9px;" type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#achat">
                                 Ajouter
                             </button>
                         </div>
@@ -271,6 +292,7 @@
                                         <th>Prix Tva</th>
                                         <th>Prix Ttc</th>
                                         <th>Taux Tva</th>
+                                        <th>Justification</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -282,21 +304,25 @@
                                             <td>{{$value->prixTva}}</td>
                                             <td>{{$value->prixTtc}}</td>
                                             <td>{{$value->tauxTva}}</td>
+                                            <td><a href="{{asset('storage/' . $value->facture_file_path)}}">Télécharger</a>
 
                                             <td>
                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Uachat"
-                                                            wire:click="editAchat({{ $value->id }})" class="dropdown-item">Modifier
+                                                            wire:click="editAchat({{ $value->id }})"
+                                                            class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
                                                             data-target="#deleteAchat">Supprimer
                                                     </button>
-                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                    <button type="button"
+                                                            wire:click="downloadFacture('{{ $value->facture_file_path }}')"
                                                             class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
@@ -304,13 +330,16 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <div wire:ignore.self class="modal fade" id="deleteAchat" tabindex="-1" role="dialog"
+                                    <div wire:ignore.self class="modal fade" id="deleteAchat" tabindex="-1"
+                                         role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer
+                                                        Confirm</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
                                                 </div>
@@ -322,7 +351,8 @@
                                                             data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteAchat"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui,
+                                                        Supprimer
                                                     </button>
                                                 </div>
                                             </div>
