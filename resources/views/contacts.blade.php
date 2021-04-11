@@ -70,7 +70,7 @@
                 </div>
 
                 <form method="post" action="{{route('sendMail')}}" enctype="multipart/form-data">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col">
@@ -91,6 +91,14 @@
                             <div class="col">
                                 <label for="message" class="col-form-label">Message: </label>
                                 <textarea name="message" id="summernote"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fas fa-paperclip"></i> Attachment
+                                <input type="file" name="files[]" multiple>
                             </div>
                         </div>
                     </div>
@@ -138,7 +146,7 @@
                 tabsize: 2,
                 height: 250,
                 callbacks: {
-                    onImageUpload: function(image) {
+                    onImageUpload: function (image) {
                         uploadImage(image[0]);
                     }
                 }
@@ -156,11 +164,11 @@
                     processData: false,
                     data: data,
                     type: "post",
-                    success: function(url) {
+                    success: function (url) {
                         var image = $('<img>').attr('src', url);
                         $('#summernote').summernote("insertNode", image[0]);
                     },
-                    error: function(data) {
+                    error: function (data) {
                         console.log(data);
                     }
                 });

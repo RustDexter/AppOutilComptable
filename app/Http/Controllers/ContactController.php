@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -101,9 +103,22 @@ class ContactController extends Controller
         $content = $request->get('message');
         $user = Auth::user();
 
-        Mail::send('reply-email', compact('content'), function ($message) use ($user, $request) {
+
+        $files = [];
+        foreach ($request->file('files') as $file) {
+            $files[] = $file->storePublicly('mail-files', 'public');
+        }
+
+        Mail::send('reply-email', compact('content'), function (Message $message) use ($files, $user, $request) {
             $message->to($request->get('toEmail'), $user->name)
                 ->subject($request->get('subject'));
+            foreach ($files as $key => $file) {
+                $fileRequest = $request->file('files')[$key];
+                if ($fileRequest instanceof UploadedFile) {
+                    $message->attach(asset('storage/' . $file), ['as' => basename(asset('storage/' . $file)), 'mime' => $fileRequest->getClientMimeType()]);
+                }
+
+            }
             $message->from(env('MAIL_USERNAME'), env('APP_NAME'));
         });
         return redirect()->back();
