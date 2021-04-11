@@ -39,5 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('dashboard/utilisateurs', 'utilisateurs')->name("utilisateurs")->middleware('expert.comptable');
     Route::get('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name("contacts")->middleware('expert.comptable');
     Route::post('dashboard/contacts/sendMail', [\App\Http\Controllers\ContactController::class, 'sendMail'])->name("sendMail")->middleware('expert.comptable');
+    Route::post('dashboard/contacts/sendMailImage', [\App\Http\Controllers\ContactController::class, 'sendMailImage'])->name("sendMailImage")->middleware('expert.comptable');
 });
 

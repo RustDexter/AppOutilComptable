@@ -101,11 +101,17 @@ class ContactController extends Controller
         $content = $request->get('message');
         $user = Auth::user();
 
-        Mail::send('reply-email', compact( 'content'), function ($message) use ($user, $request) {
+        Mail::send('reply-email', compact('content'), function ($message) use ($user, $request) {
             $message->to($request->get('toEmail'), $user->name)
                 ->subject($request->get('subject'));
             $message->from(env('MAIL_USERNAME'), env('APP_NAME'));
         });
         return redirect()->back();
+    }
+
+
+    public function sendMailImage(Request $request)
+    {
+        return asset('storage/' . $request->file('image')->storePublicly('mailImages', 'public'));
     }
 }

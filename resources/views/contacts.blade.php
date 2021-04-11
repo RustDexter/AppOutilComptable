@@ -69,7 +69,7 @@
                     </button>
                 </div>
 
-                <form method="post" action="{{route('sendMail')}}">
+                <form method="post" action="{{route('sendMail')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group row">
@@ -111,9 +111,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"
             integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA=="
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -130,7 +127,44 @@
 
     <script>
         $(document).ready(function () {
-            $('#summernote').summernote();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#summernote').summernote({
+                placeholder: 'Tapez un email',
+                tabsize: 2,
+                height: 250,
+                callbacks: {
+                    onImageUpload: function(image) {
+                        uploadImage(image[0]);
+                    }
+                }
+            });
+
+
+            function uploadImage(image) {
+                var data = new FormData();
+                data.append("image", image);
+                console.log('data: ' + data);
+                $.ajax({
+                    url: '{{route('sendMailImage')}}',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    type: "post",
+                    success: function(url) {
+                        var image = $('<img>').attr('src', url);
+                        $('#summernote').summernote("insertNode", image[0]);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
         });
     </script>
 @endsection

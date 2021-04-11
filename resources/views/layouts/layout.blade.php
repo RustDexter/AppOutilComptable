@@ -255,15 +255,17 @@
     </div>
 </div>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 @livewireScripts
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script src="{{ mix('js/app.js') }}"></script>
 
 <script src="{{ asset('js/apps.js') }}"></script>
 
-<script src="{{ asset('js/popper.min.js') }}"></script>
+
 <script src="{{ asset('js/moment.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 <script src="{{ asset('js/simplebar.min.js') }}"></script>
 <script src="{{ asset('js/daterangepicker.js') }}"></script>
 <script src="{{ asset('js/jquery.stickOnScroll.js') }}"></script>
