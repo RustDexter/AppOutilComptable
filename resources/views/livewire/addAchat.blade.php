@@ -30,19 +30,19 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">	Prix Ht:</label>
+                        <label for="recipient-name" class="col-form-label">	Prix HT:</label>
                         <input type="number" wire:model="prixHt" class="form-control"  placeholder="prix Ht">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">	Prix tva:</label>
+                        <label for="recipient-name" class="col-form-label">	Prix TVA:</label>
                         <input type="number" wire:model="prixTva" class="form-control"  placeholder="prix tva">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">	Prix ttc:</label>
+                        <label for="recipient-name" class="col-form-label">	Prix TTC:</label>
                         <input type="number" wire:model="prixTtc" class="form-control"  placeholder="prix ttc">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">	Taux tva:</label>
+                        <label for="recipient-name" class="col-form-label">	Taux TVA:</label>
                         <input type="number" wire:model="tauxTva" class="form-control"  placeholder="taux tva">
                     </div>
                     <input name="type" value="achat" hidden>

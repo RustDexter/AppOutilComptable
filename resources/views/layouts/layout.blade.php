@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>outilComptable</title>
+    <title>DIGI-Compta</title>
 
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/simplebar.css')}}">
@@ -30,6 +30,8 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-dark.css') }}" id="darkTheme" disabled>
+    <link rel="icon" href="{{asset('assets/images/favicon.png')}}">
+
     <style>
         .chat {
             list-style: none;

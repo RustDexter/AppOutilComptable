@@ -53,10 +53,10 @@
                                     <tr>
                                         <th>Libelle</th>
                                         <th>Description</th>
-                                        <th>Prix Ht</th>
-                                        <th>Prix Tva</th>
-                                        <th>Prix Ttc</th>
-                                        <th>Taux Tva</th>
+                                        <th>Prix HT</th>
+                                        <th>Prix TVA</th>
+                                        <th>Prix TTC</th>
+                                        <th>Taux TVA</th>
                                     </tr>
                                     </thead>
                                     <tbody>
