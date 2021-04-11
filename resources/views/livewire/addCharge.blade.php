@@ -1,9 +1,3 @@
-<button  style="    position: absolute;
-    right: 28px;
-    top: 9px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge">
-    Ajouter
-</button>
-
 
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="charge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
