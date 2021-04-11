@@ -39,7 +39,18 @@
                         <label for="recipient-name" class="col-form-label">	Taux tva:</label>
                         <input type="number" wire:model="tauxTva" class="form-control"  placeholder="taux tva">
                     </div>
-                    <input name="type" value="achat" hidden>
+                    <div class="row">
+                            <div class="col">
+                                <label for="photo" class="col-form-label">Facture:</label>
+
+                                <div class="custom-file">
+                                    <input type="file" wire:model="file" class="custom-file-input" required>
+                                    <label class="custom-file-label">choisissez un fichier...</label>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <div wire:loading wire:target="file">Uploading...</div>
                 </form>
             </div>
             <div class="modal-footer">

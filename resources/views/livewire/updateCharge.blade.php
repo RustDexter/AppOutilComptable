@@ -57,7 +57,18 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="row">
+                            <div class="col">
+                                <label for="photo" class="col-form-label">Facture:</label>
 
+                                <div class="custom-file">
+                                    <input type="file" wire:model="file" class="custom-file-input" required>
+                                    <label class="custom-file-label">choisissez un fichier...</label>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <div wire:loading wire:target="file">Uploading...</div>
 
                 </form>
             </div>

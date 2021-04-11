@@ -5,15 +5,32 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Input;
 use Livewire\Component;
+use Illuminate\Http\UploadedFile;
+use Livewire\WithFileUploads;
 
 class Facture extends Component
 {
-    public $libelle, $description, $prixHt, $prixTva, $tauxTva, $prixTtc, $type_id;
+
+    use WithFileUploads;
+
+    public $libelle, $description, $prixHt, $prixTva, $tauxTva, $prixTtc, $type_id,$file;
     public $dossier, $dossiers, $dossier_id;
     public $achats = array(), $ventes = array(), $charges = array(), $types = array();
 
     public $deleteId = '', $selected_id, $error_index;
 
+    protected function rules()
+    {
+        return [
+            'libelle' => "required",
+            'description' => "required",
+            'prixHt' => "required",
+            'prixTva' => "required",
+            'prixTtc' => "required",
+            'tauxTva' => "required",
+            'file' => "required"
+        ];
+    }
 
     public function mount()
     {
@@ -52,6 +69,7 @@ class Facture extends Component
         $this->prixTva = "";
         $this->tauxTva = "";
         $this->prixTtc = "";
+        $this->file = "";
         $this->type_id = $this->types->first()->id;
     }
 
@@ -59,14 +77,19 @@ class Facture extends Component
     {
         $this->error_index = 0;
 
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-        ]);
+       $this->validate();
+
+       if ($this->file instanceof UploadedFile){
+        $data = [
+            'libelle' => $this->libelle,
+            'description' => $this->description,
+            'prixHt' => $this->prixHt,
+            'prixTva' => $this->prixTva,
+            'prixTtc' =>$this->prixTtc,
+            'tauxTva' =>$this->tauxTva,
+            'facture_file_path'=>$this->file->storePublicly('factures', 'public')
+        ];
+        }
 
         $this->dossier->ventes()->create($data);
 
@@ -79,14 +102,19 @@ class Facture extends Component
     {
         $this->error_index = 2;
 
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-        ]);
+        $this->validate();
+
+        if ($this->file instanceof UploadedFile){
+            $data = [
+                'libelle' => $this->libelle,
+                'description' => $this->description,
+                'prixHt' => $this->prixHt,
+                'prixTva' => $this->prixTva,
+                'prixTtc' =>$this->prixTtc,
+                'tauxTva' =>$this->tauxTva,
+                'facture_file_path'=>$this->file->storePublicly('factures', 'public')
+            ];
+        }
 
         $this->dossier->achats()->create($data);
 
@@ -100,15 +128,20 @@ class Facture extends Component
     public function addCharge()
     {
         $this->error_index = 1;
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-            'type_id' => "required",
-        ]);
+        $this->validate();
+
+        if ($this->file instanceof UploadedFile){
+            $data = [
+                'libelle' => $this->libelle,
+                'description' => $this->description,
+                'prixHt' => $this->prixHt,
+                'prixTva' => $this->prixTva,
+                'prixTtc' =>$this->prixTtc,
+                'tauxTva' =>$this->tauxTva,
+                'type_id' =>$this->type_id,
+                'facture_file_path'=>$this->file->storePublicly('factures', 'public')
+            ];
+        }
 
         $this->dossier->charges()->create($data);
 
@@ -169,14 +202,7 @@ class Facture extends Component
     {
         $this->error_index = 0;
 
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-        ]);
+        $data = $this->validate();
 
 
         if ($this->selected_id) {
@@ -188,6 +214,7 @@ class Facture extends Component
                 'prixTva' => $this->prixTva,
                 'prixTtc' => $this->prixTtc,
                 'tauxTva' => $this->tauxTva,
+                'facture_file_path'=>$this->file->storePublicly('factures', 'public')
             ]);
         }
         //session()->flash('message', 'Dossier Updated Successfully.');
@@ -198,46 +225,48 @@ class Facture extends Component
     public function updateCharge()
     {
         $this->error_index = 1;
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-            'type_id' => "required"
-        ]);
+        $data = $this->validate();
 
 
         if ($this->selected_id) {
             $record = \App\Models\Charge::find($this->selected_id);
-            $record->update($data);
-            $this->resetInput();
+            $record->update([
+                'libelle' => $this->libelle,
+                'description' => $this->description,
+                'prixHt' => $this->prixHt,
+                'prixTva' => $this->prixTva,
+                'prixTtc' => $this->prixTtc,
+                'tauxTva' => $this->tauxTva,
+                'type_id' => $this->type_id,
+                'facture_file_path'=>$this->file->storePublicly('factures', 'public')
+            ]);
+            
         }
         //session()->flash('message', 'Dossier Updated Successfully.');
-
+        $this->resetInput();
         $this->refresh();
     }
 
     public function updateAchat()
     {
         $this->error_index = 2;
-        $data = $this->validate([
-            'libelle' => "required",
-            'description' => "required",
-            'prixHt' => "required",
-            'prixTva' => "required",
-            'prixTtc' => "required",
-            'tauxTva' => "required",
-        ]);
+        $data = $this->validate();
 
 
         if ($this->selected_id) {
             $record = \App\Models\Achat::find($this->selected_id);
-            $record->update($data);
-            $this->resetInput();
+            $record->update([
+                'libelle' => $this->libelle,
+                'description' => $this->description,
+                'prixHt' => $this->prixHt,
+                'prixTva' => $this->prixTva,
+                'prixTtc' => $this->prixTtc,
+                'tauxTva' => $this->tauxTva,
+                'facture_file_path'=>$this->file->storePublicly('factures', 'public')
+            ]);
+            
         }
-
+        $this->resetInput();
         $this->refresh();
     }
 
@@ -275,5 +304,15 @@ class Facture extends Component
             $record->delete();
             $this->refresh();
         }
+    }
+
+    public function downloadFacture($path){
+        if($path){
+            return response()->download(storage_path("app\public\\".$path));
+        }
+        else{
+            $this->addError('err', 'cette facture ne contient aucun fichier');
+        }
+        
     }
 }
