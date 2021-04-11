@@ -19,12 +19,7 @@
 
                 </div>
             </div>
-
-
-
         </div>
-
-
 
         <div wire:key="Vente">
             @include('livewire.updateVente')
@@ -80,11 +75,14 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Uvente"
-                                                            wire:click="editVente({{ $value->id }})" class="dropdown-item">Edit
+                                                            wire:click="editVente({{ $value->id }})" class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
-                                                            data-target="#venteDelete">Delete
+                                                            data-target="#venteDelete">Supprimer
+                                                    </button>
+                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                            class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
                                             </td>
@@ -96,7 +94,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
@@ -106,10 +104,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary close-btn"
-                                                            data-dismiss="modal">Close
+                                                            data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteVente"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
                                                     </button>
                                                 </div>
                                             </div>
@@ -187,11 +185,14 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Ucharge"
-                                                            wire:click="editCharge({{ $value->id }})" class="dropdown-item">Edit
+                                                            wire:click="editCharge({{ $value->id }})" class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
-                                                            data-target="#deleteCharge">Delete
+                                                            data-target="#deleteCharge">Supprimer
+                                                    </button>
+                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                            class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
                                             </td>
@@ -203,7 +204,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
@@ -213,10 +214,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary close-btn"
-                                                            data-dismiss="modal">Close
+                                                            data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteCharge"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
                                                     </button>
                                                 </div>
                                             </div>
@@ -289,11 +290,14 @@
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <button data-toggle="modal" data-target="#Uachat"
-                                                            wire:click="editAchat({{ $value->id }})" class="dropdown-item">Edit
+                                                            wire:click="editAchat({{ $value->id }})" class="dropdown-item">Modifier
                                                     </button>
                                                     <button type="button" wire:click="deleteId({{ $value->id }})"
                                                             class="dropdown-item" data-toggle="modal"
-                                                            data-target="#deleteAchat">Delete
+                                                            data-target="#deleteAchat">Supprimer
+                                                    </button>
+                                                    <button type="button" wire:click="downloadFacture('{{ $value->facture_file_path }}')"
+                                                            class="dropdown-item" data-toggle="modal">Télécharger
                                                     </button>
                                                 </div>
                                             </td>
@@ -305,7 +309,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Confirm</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true close-btn">×</span>
                                                     </button>
@@ -315,10 +319,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary close-btn"
-                                                            data-dismiss="modal">Close
+                                                            data-dismiss="modal">Fermer
                                                     </button>
                                                     <button type="button" wire:click.prevent="deleteAchat"
-                                                            class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete
+                                                            class="btn btn-danger close-modal" data-dismiss="modal">Oui, Supprimer
                                                     </button>
                                                 </div>
                                             </div>
