@@ -1,12 +1,16 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="flex justify-center">
+    <div>
         <div>
             <div class="row">
                 <div class="col-md-12 my-4">
                     <div class="card">
                         <div class="card-header">
                             <h2 class="h4 mb-1">Les messages</h2>
+                            <button type="button" data-toggle="modal" data-target="#composeMessage"
+                                    class="btn btn-primary" style="position: absolute; right: 28px; top: 9px;">
+                                Composer un message
+                            </button>
                         </div>
                         <div class="card-body">
                             @if (count($errors) > 0 && 2 == $error_index)
@@ -47,9 +51,86 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="composeMessage" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Composer un message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true close-btn">×</span>
+                    </button>
+                </div>
+
+                <form method="post" action="{{route('sendMail')}}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="toEmail" class="col-form-label">À: </label>
+                                <input type="text" name="toEmail" id="toEmail" class="form-control" placeholder="À: ">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="subject" class="col-form-label">Sujet: </label>
+                                <input type="text" name="subject" id="subject" class="form-control"
+                                       placeholder="Sujet: ">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="message" class="col-form-label">Message: </label>
+                                <textarea name="message" id="summernote"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section("scriptJs")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"
+            integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA=="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"
+            integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg=="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"
+            integrity="sha512-+cXPhsJzyjNGFm5zE+KPEX4Vr/1AbqCUuzAS8Cy5AfLEWm9+UI9OySleqLiSQOQ5Oa2UrzaeAOijhvV/M4apyQ=="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
 @endsection

@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard/chat', [\App\Http\Controllers\ChatsController::class, 'index'])->name("chat");
     Route::get('/dashboard/calendrier', [CalendrierController::class, 'index'])->name('calendrier');
-    Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action'])->name('calendrier');
+    Route::post('/dashboard/calendrier/action', [CalendrierController::class, 'action'])->name('calendrier.store');
     Route::get('messages', [\App\Http\Controllers\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\ChatsController::class, 'sendMessage']);
     Route::view('dashboard/dossiers', 'dossiers');
@@ -38,5 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('dashboard/factures', 'factures')->name("factures");
     Route::view('dashboard/utilisateurs', 'utilisateurs')->name("utilisateurs")->middleware('expert.comptable');
     Route::get('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name("contacts")->middleware('expert.comptable');
+    Route::post('dashboard/contacts/sendMail', [\App\Http\Controllers\ContactController::class, 'sendMail'])->name("sendMail")->middleware('expert.comptable');
 });
 

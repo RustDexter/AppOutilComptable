@@ -31,46 +31,45 @@
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{asset('css/dashboard/css/app-dark.css') }}" id="darkTheme" disabled>
     <link rel="icon" href="{{asset('assets/images/favicon.png')}}">
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <style>
         .chat {
             list-style: none;
             margin: 0;
             padding: 0;
         }
-
         .chat li {
             margin-bottom: 10px;
             padding-bottom: 5px;
             border-bottom: 1px dotted #B3A9A9;
         }
-
         .chat li .chat-body p {
             margin: 0;
             color: #777777;
         }
-
         .panel-body {
             overflow-y: scroll;
             height: 350px;
         }
-
         ::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
             background-color: #F5F5F5;
         }
-
         ::-webkit-scrollbar {
             width: 12px;
             background-color: #F5F5F5;
         }
-
         ::-webkit-scrollbar-thumb {
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
             background-color: #555;
         }
+        .note-btn-group.btn-group > *::after {
+            content: "";
+        }
     </style>
     @livewireStyles
+
+
 </head>
 <body class="vertical  light">
 
@@ -296,18 +295,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 <script>
-
     $(document).ready(function () {
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -319,18 +314,13 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end, allDay) {
-
                 var title = prompt('Event title:');
-
                 if (title) {
                     var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-
                     var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-
                     $.ajax({
                         url: "/dashboard/calendrier/action",
                         type: "POST",
-
                         data: {
                             title: title,
                             start: start,
@@ -365,7 +355,6 @@
                     },
                     success: function (response) {
                         calendar.fullCalendar('refetchEvents');
-
                         alert("Événement mis à jour avec succès");
                     }
                 })
@@ -391,7 +380,6 @@
                     }
                 })
             },
-
             eventClick: function (event) {
                 if (confirm("Voulez-vous vraiment le supprimer?")) {
                     var id = event.id;
@@ -410,7 +398,6 @@
                 }
             }
         });
-
     });
 </script>
 <script>
@@ -453,11 +440,9 @@
     }
     var start = moment().subtract(29, 'days');
     var end = moment();
-
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     }
-
     $('#reportrange').daterangepicker(
         {
             startDate: start,
@@ -624,11 +609,9 @@
 
 <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
         dataLayer.push(arguments);
     }
-
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
 </script>

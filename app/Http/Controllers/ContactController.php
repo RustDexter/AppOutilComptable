@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -85,5 +87,25 @@ class ContactController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(Request $request)
+    {
+        $content = $request->get('message');
+        $user = Auth::user();
+
+        Mail::send('reply-email', compact( 'content'), function ($message) use ($user, $request) {
+            $message->to($request->get('toEmail'), $user->name)
+                ->subject($request->get('subject'));
+            $message->from(env('MAIL_USERNAME'), env('APP_NAME'));
+        });
+        return redirect()->back();
     }
 }
